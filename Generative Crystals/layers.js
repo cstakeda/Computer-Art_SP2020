@@ -78,8 +78,6 @@ class OutlineShape extends Layer{
         push()
           translate(width/2,height/2)
           if (this.polygonTrue){
-            console.log('Making hexagon')
-            console.log(this.numSides)
             polygon(0,0,HEX_SIZE/2,this.sides)
           }else{
             ellipse(0,0,HEX_SIZE, HEX_SIZE)
