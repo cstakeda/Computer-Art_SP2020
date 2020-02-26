@@ -1,46 +1,47 @@
+
+	
 	function setup() {
-		noLoop()
-	  	createCanvas(1000,1000 )
-		draw()
+		createCanvas(1000,1000)
 	}
+
+	function mousePressed(){ // Attempt to get canvas to reload. Believed to be isse=ue with noise()
+		clear()
+		redraw()
+	}
+
 
 	function draw() {
 
-	  const max = TWO_PI
-	  const min = -TWO_PI
-	  var t = 0
-	// const i = 4
-	  const b = 10 //Border from edge
-	  const c = 1000
+		noLoop()
+		//frameRate(1)
+
+		const max = TWO_PI
+	  	const min = -TWO_PI
+	  	const borderoffset  = 25 //Border from edge
+	  	const c = 1000 //Tuning parameter
+	  	const spacing = 6.1 //Spacing inbetween crosses
+	  	var t = 0 
+	  	stroke(5)
+	  	strokeWeight(1.9)
 
 
-	  stroke(10)
-	 // fill(109, 153, 122)
-	  strokeWeight(2)
-
-
-	  for (x = b; x <= width - b; x+=10) { 
-		for (y = b; y <= height - b; y+=10) {
-			const r = map(noise(x/c,y/c,t*c),0,1,min,max)
-			const s = map(noise(x/c,y/c,t+c),0,1,3,10)
-		 	 drawCross(x,y,s,r)
+		for (x = borderoffset; x <= width - borderoffset; x+=spacing) { 
+			for (y = borderoffset; y <= height - borderoffset; y+=spacing) {
+				const radius = map(noise(x/c,y/c,t+c),0,1,min,max)
+				const angle = map(noise(x/c,y/c,t+c),0,1,3,10)
+				cross(x,y,angle,radius)
+			}
 		}
-	  }
-		t+= 0.001
-	}
+			t+= .001
+		}
 
-	function drawCross(x,y,radius,start) {
+		function cross(x,y,radius,start) {
+			push()
+				translate(x,y)
+				rotate(start)
+				line(0,-radius,0,radius)
+				line(-radius,0,radius,0)
+			pop()
+		}
 
-		const x1 = x - (cos(start) * radius)
-	  	const y1 = y - (sin(start) * radius)
-	  	const x2 = x + (cos(start) * radius)
-	  	const y2 = y + (sin(start) * radius)
-	  	const x3 = x - (sin(start) * radius)
-	  	const y3 = y + (cos(start) * radius)
-	  	const x4 = x + (sin(start) * radius)
-	  	const y4 = y - (cos(start) * radius)
-	  
-		
-	 	line(x1,y1,x2,y2)
-	 	line(x3,y3,x4,y4)
-	}
+	
