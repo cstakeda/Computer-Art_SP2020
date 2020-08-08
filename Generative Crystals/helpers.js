@@ -44,3 +44,41 @@ function polygon(posX,posY,radius,numSides){ //Polygon generator
       endShape(CLOSE);
     }
   }
+
+const layerConstructors = [
+  {
+    name: 'Outline Shape',
+    init: () => new OutlineShape(),
+    weight: .3
+  },
+  {
+    name: 'Centered Shape',
+    init: () => new CenteredShape(),
+    weight: .3
+  },
+  {
+    name: 'Circles',
+    init: () => new Circles(),
+    weight: .3
+  },
+  {
+    name: 'Simple Lines',
+    init: () => new SimpleLines(),
+    weight: .3
+  },
+  {
+    name: 'Dotted Lines',
+    init: () => new DottedLines(),
+    weight: .3
+  },
+  {
+    name: 'Ring of Shapes',
+    init: () => new RingOfShapes(),
+    weight: .3
+  },
+  {
+    name: 'Stepped Hexagons',
+    init: () => new SteppedHexagons(),
+    weight: .3
+  }
+]

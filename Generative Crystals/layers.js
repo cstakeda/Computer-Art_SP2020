@@ -101,7 +101,7 @@ class DottedLines extends Layer{
     noStroke()
     
     push()
-      translate(width/2,height,2)
+      translate(width/2,height/2)
       for(let i=0; i<=this.numShapes; i++){
         for(let x=this.centerOffset; x <HEX_SIZE / 2; x += this.singleStep){
           rect(x,0,this.shapeSize,this.shapeSize)
